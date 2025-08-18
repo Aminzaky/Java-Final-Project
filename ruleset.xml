@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Java Project Ruleset"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0
+                             https://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <description>
+        PMD ruleset combining common best practices, error-prone checks,
+        code style guidelines, performance improvements, and design issues.
+    </description>
+
+    <!-- Best Practices -->
+    <rule ref="category/java/bestpractices.xml"/>
+
+    <!-- Error-prone code -->
+    <rule ref="category/java/errorprone.xml"/>
+
+    <!-- Code Style and Readability -->
+    <rule ref="category/java/codestyle.xml"/>
+
+    <!-- Design Problems -->
+    <rule ref="category/java/design.xml"/>
+
+    <!-- Performance-related checks -->
+    <rule ref="category/java/performance.xml"/>
+
+</ruleset>
