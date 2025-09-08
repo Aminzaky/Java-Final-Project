@@ -5,10 +5,16 @@
 package com.mycompany.final_java_project;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.*;
 /**
  *
  * @author aminz
  */
 public class CartTest {
+    
+    @Test
+    void testCartCreation() {
+        Cart cart = new Cart();
+    }
     
 }

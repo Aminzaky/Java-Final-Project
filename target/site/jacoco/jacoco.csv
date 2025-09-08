@@ -2,5 +2,5 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 Final_java_project,com.mycompany.final_java_project,ShopManager,44,0,2,0,10,0,5,0,4,0
 Final_java_project,com.mycompany.final_java_project,Final_java_project,256,0,18,0,70,0,16,0,4,0
 Final_java_project,com.mycompany.final_java_project,Product,41,0,0,0,13,0,7,0,7,0
-Final_java_project,com.mycompany.final_java_project,Cart,85,0,8,0,17,0,10,0,6,0
+Final_java_project,com.mycompany.final_java_project,Cart,77,8,8,0,15,2,9,1,5,1
 Final_java_project,com.mycompany.final_java_project,CartItem,29,0,0,0,7,0,4,0,4,0
