@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Final_java_project.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Final_java_project</a> &gt; <a href="index.source.html" class="el_package">com.mycompany.final_java_project</a> &gt; <span class="el_source">Final_java_project.java</span></div><h1>Final_java_project.java</h1><pre class="source lang-java linenums">/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+package com.mycompany.final_java_project;
+
+/**
+ *
+ * @author aminz
+ */
+import java.io.*;
+import java.util.*;
+
+<span class="nc" id="L13">public class Final_java_project {</span>
+
+    public static void main(String[] args) {
+<span class="nc" id="L16">        ShopManager shopManager = new ShopManager();</span>
+<span class="nc" id="L17">        Cart cart = new Cart();</span>
+<span class="nc" id="L18">        Scanner scanner = new Scanner(System.in);</span>
+
+        // Add products to the catalog
+<span class="nc" id="L21">        shopManager.addProduct(new Product(1, &quot;Laptop&quot;, 1200, 10));</span>
+<span class="nc" id="L22">        shopManager.addProduct(new Product(2, &quot;Phone&quot;, 800, 15));</span>
+<span class="nc" id="L23">        shopManager.addProduct(new Product(3, &quot;Tablet&quot;, 400, 20));</span>
+
+        while (true) {
+<span class="nc" id="L26">            System.out.println(&quot;\n1. View Catalog&quot;);</span>
+<span class="nc" id="L27">            System.out.println(&quot;2. Add to Cart&quot;);</span>
+<span class="nc" id="L28">            System.out.println(&quot;3. Remove from Cart&quot;);</span>
+<span class="nc" id="L29">            System.out.println(&quot;4. View Cart&quot;);</span>
+<span class="nc" id="L30">            System.out.println(&quot;5. Save Cart to File&quot;);</span>
+<span class="nc" id="L31">            System.out.println(&quot;6. Load Cart from File&quot;);</span>
+<span class="nc" id="L32">            System.out.println(&quot;7. Exit&quot;);</span>
+<span class="nc" id="L33">            System.out.print(&quot;Choose an option: &quot;);</span>
+
+<span class="nc" id="L35">            int choice = scanner.nextInt();</span>
+<span class="nc bnc" id="L36" title="All 8 branches missed.">            switch (choice) {</span>
+                case 1:
+<span class="nc" id="L38">                    shopManager.showCatalog();</span>
+<span class="nc" id="L39">                    break;</span>
+                case 2:
+<span class="nc" id="L41">                    System.out.print(&quot;Enter product ID: &quot;);</span>
+<span class="nc" id="L42">                    int productId = scanner.nextInt();</span>
+<span class="nc" id="L43">                    System.out.print(&quot;Enter quantity: &quot;);</span>
+<span class="nc" id="L44">                    int quantity = scanner.nextInt();</span>
+<span class="nc" id="L45">                    Product product = shopManager.getProduct(productId);</span>
+<span class="nc bnc" id="L46" title="All 4 branches missed.">                    if (product != null &amp;&amp; product.getStock() &gt;= quantity) {</span>
+<span class="nc" id="L47">                        cart.addItem(product, quantity);</span>
+<span class="nc" id="L48">                        product.setStock(product.getStock() - quantity);</span>
+                    } else {
+<span class="nc" id="L50">                        System.out.println(&quot;Invalid product ID or insufficient stock.&quot;);</span>
+                    }
+<span class="nc" id="L52">                    break;</span>
+                case 3:
+<span class="nc" id="L54">                    System.out.print(&quot;Enter product ID to remove: &quot;);</span>
+<span class="nc" id="L55">                    int removeId = scanner.nextInt();</span>
+<span class="nc" id="L56">                    cart.removeItem(removeId);</span>
+<span class="nc" id="L57">                    break;</span>
+                case 4:
+<span class="nc" id="L59">                    System.out.println(&quot;Cart Items:&quot;);</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">                    for (CartItem item : cart.getItems()) {</span>
+<span class="nc" id="L61">                        System.out.println(item);</span>
+<span class="nc" id="L62">                    }</span>
+<span class="nc" id="L63">                    System.out.println(&quot;Total: $&quot; + cart.calculateTotal());</span>
+<span class="nc" id="L64">                    break;</span>
+                case 5:
+<span class="nc" id="L66">                    saveCartToFile(cart, &quot;cart.txt&quot;);</span>
+<span class="nc" id="L67">                    break;</span>
+                case 6:
+<span class="nc" id="L69">                    loadCartFromFile(cart, &quot;cart.txt&quot;);</span>
+<span class="nc" id="L70">                    break;</span>
+                case 7:
+<span class="nc" id="L72">                    System.out.println(&quot;Exiting...&quot;);</span>
+<span class="nc" id="L73">                    scanner.close();</span>
+<span class="nc" id="L74">                    return;</span>
+                default:
+<span class="nc" id="L76">                    System.out.println(&quot;Invalid choice.&quot;);</span>
+            }
+<span class="nc" id="L78">        }</span>
+    }
+
+    private static void saveCartToFile(Cart cart, String filename) {
+<span class="nc" id="L82">        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            for (CartItem item : cart.getItems()) {</span>
+<span class="nc" id="L84">                writer.write(item.getProduct().getId() + &quot;,&quot; + item.getQuantity());</span>
+<span class="nc" id="L85">                writer.newLine();</span>
+<span class="nc" id="L86">            }</span>
+<span class="nc" id="L87">            System.out.println(&quot;Cart saved to &quot; + filename);</span>
+<span class="nc" id="L88">        } catch (IOException e) {</span>
+<span class="nc" id="L89">            System.out.println(&quot;Error saving cart: &quot; + e.getMessage());</span>
+<span class="nc" id="L90">        }</span>
+<span class="nc" id="L91">    }</span>
+
+    private static void loadCartFromFile(Cart cart, String filename) {
+<span class="nc" id="L94">        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {</span>
+            String line;
+<span class="nc bnc" id="L96" title="All 2 branches missed.">            while ((line = reader.readLine()) != null) {</span>
+<span class="nc" id="L97">                String[] parts = line.split(&quot;,&quot;);</span>
+<span class="nc" id="L98">                int productId = Integer.parseInt(parts[0]);</span>
+<span class="nc" id="L99">                int quantity = Integer.parseInt(parts[1]);</span>
+                // Product lookup logic can be enhanced
+<span class="nc" id="L101">                cart.addItem(new Product(productId, &quot;Loaded Product&quot;, 0, 0), quantity);</span>
+<span class="nc" id="L102">            }</span>
+<span class="nc" id="L103">            System.out.println(&quot;Cart loaded from &quot; + filename);</span>
+<span class="nc" id="L104">        } catch (IOException e) {</span>
+<span class="nc" id="L105">            System.out.println(&quot;Error loading cart: &quot; + e.getMessage());</span>
+<span class="nc" id="L106">        }</span>
+<span class="nc" id="L107">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
